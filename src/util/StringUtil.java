@@ -37,4 +37,14 @@ public class StringUtil {
             throw new ImpossibleException("UTF-8 is a supported encoding", e);
         }
     }
+
+    public static String makeExceptionString(Throwable e) {
+        StringBuilder buffer = new StringBuilder();
+        buffer.append(e.toString()).append("\n");
+        for (StackTraceElement element : e.getStackTrace()) {
+            buffer.append("\t").append(element).append("\n");
+        }
+
+        return buffer.toString();
+    }
 }
